@@ -485,8 +485,21 @@ export const works = [
   },
 ]
 
+export let WORK = '/work'
+
+export async function detectWorkRoot() {
+  const ok = await new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve(true)
+    img.onerror = () => resolve(false)
+    img.src = '/work/website-hero.webp?probe=1'
+  })
+  if (!ok) WORK = '/public/work'
+  return WORK
+}
+
 export function picture(id, { full = false, eager = false, alt = '' } = {}) {
-  const base = full ? `/work/${id}-full` : `/work/${id}`
+  const base = full ? `${WORK}/${id}-full` : `${WORK}/${id}`
   const loading = eager ? 'eager' : 'lazy'
   const fetchpriority = eager ? 'high' : 'auto'
   const safeAlt = alt.replaceAll('"', '&quot;')

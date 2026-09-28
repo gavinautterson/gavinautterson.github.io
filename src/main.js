@@ -1,4 +1,4 @@
-import { works, picture } from './work-data.js'
+import { works, picture, detectWorkRoot, WORK } from './work-data.js'
 
 const page = document.body.dataset.page || 'home'
 
@@ -76,8 +76,8 @@ function show(i) {
   const item = activeList[i]
   if (!item) return
   activeIndex = i
-  lbImg.src = `/work/${item.id}-full.webp`
-  lbImg.onerror = () => { lbImg.src = `/work/${item.id}-full.jpg` }
+  lbImg.src = `${WORK}/${item.id}-full.webp`
+  lbImg.onerror = () => { lbImg.src = `${WORK}/${item.id}-full.jpg` }
   lbImg.alt = item.title
   lbCap.innerHTML = `<strong>${item.title}</strong>${item.caption} · ${item.projectLabel}`
 }
@@ -119,6 +119,16 @@ function bindTiles(container, list) {
     const visList = visible.map((el) => list[Number(el.dataset.index)])
     const clicked = list[Number(tile.dataset.index)]
     openLightbox(visList, visList.indexOf(clicked))
+  })
+}
+
+await detectWorkRoot()
+
+if (WORK === '/public/work') {
+  document.querySelectorAll('source[srcset], img[src]').forEach((el) => {
+    if (el.srcset) el.srcset = el.srcset.replaceAll('/work/', '/public/work/')
+    const src = el.getAttribute('src')
+    if (src?.includes('/work/')) el.setAttribute('src', src.replaceAll('/work/', '/public/work/'))
   })
 }
 
