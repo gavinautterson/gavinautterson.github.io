@@ -125,10 +125,16 @@ function bindTiles(container, list) {
 await detectWorkRoot()
 
 if (WORK === '/public/work') {
-  document.querySelectorAll('source[srcset], img[src]').forEach((el) => {
-    if (el.srcset) el.srcset = el.srcset.replaceAll('/work/', '/public/work/')
-    const src = el.getAttribute('src')
-    if (src?.includes('/work/')) el.setAttribute('src', src.replaceAll('/work/', '/public/work/'))
+  const toPublic = (value) =>
+    value.replaceAll('/public/work/', '/work/').replaceAll('/work/', '/public/work/')
+  document.querySelectorAll('source[srcset], img[src], link[href], meta[content]').forEach((el) => {
+    for (const attr of ['srcset', 'src', 'href', 'content']) {
+      const value = el.getAttribute(attr)
+      if (value?.includes('/work/')) el.setAttribute(attr, toPublic(value))
+    }
+  })
+  document.querySelectorAll('link[rel="icon"]').forEach((el) => {
+    if (el.getAttribute('href') === '/favicon.svg') el.setAttribute('href', '/public/favicon.svg')
   })
 }
 

@@ -9,6 +9,30 @@
   <meta property="og:description" content="Game worlds. Built to ship.">
   <meta property="og:image" content="/work/website-hero.jpg">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var probe = new Image()
+      probe.onerror = function () {
+        var fix = function (value) {
+          return value.replaceAll('/public/work/', '/work/').replaceAll('/work/', '/public/work/')
+        }
+        var rewrite = function () {
+          document.querySelectorAll('source[srcset], img[src], link[href], meta[content]').forEach(function (el) {
+            ;['srcset', 'src', 'href', 'content'].forEach(function (attr) {
+              var value = el.getAttribute(attr)
+              if (value && value.indexOf('/work/') !== -1) el.setAttribute(attr, fix(value))
+            })
+          })
+        }
+        rewrite()
+        document.querySelectorAll('link[rel="icon"]').forEach(function (el) {
+          if (el.getAttribute('href') === '/favicon.svg') el.setAttribute('href', '/public/favicon.svg')
+        })
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rewrite)
+      }
+      probe.src = '/work/website-hero.webp?probe=1'
+    })()
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
