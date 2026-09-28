@@ -1,0 +1,16 @@
+{
+  "name": "gavin-autterson-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/prepare-images.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.2",
+    "vite": "^7.1.3"
+  }
+}
