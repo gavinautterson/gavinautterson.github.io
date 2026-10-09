@@ -151,6 +151,8 @@ if (page === 'home') {
     'library-biome',
     'sand-biome',
     'grumbler',
+    'grass-golems',
+    'cave-golems',
     'toxic-weapons',
     'survivor-poi-minecart',
     'survivor-poi-oasis',

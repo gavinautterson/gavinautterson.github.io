@@ -53,6 +53,8 @@ const assets = [
   ['Voxie Tactics Character and Creature Art/Miniskele.png', 'miniskele'],
   ['Voxie Tactics Character and Creature Art/Red Dino.png', 'red-dino'],
   ['Voxie Tactics Character and Creature Art/Snail and Slug.png', 'snail-and-slug'],
+  ['Voxie Tactics Character and Creature Art/Grass Golems In Game.png', 'grass-golems'],
+  ['Voxie Tactics Character and Creature Art/Cave Golems In-Game.png', 'cave-golems'],
   ['Voxie Tactics Character and Creature Art/Shroud.png', 'shroud'],
   ['Voxie Tactics Character and Creature Art/PCB Sword And Shield.png', 'pcb-sword-shield'],
   ['Voxie Tactics Character and Creature Art/Tomes.png', 'tomes'],
