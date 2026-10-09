@@ -174,6 +174,7 @@ export const works = [
     projectLabel: 'Voxie Tactics',
     kind: 'creature',
     featured: true,
+    size: 'square',
   },
   {
     id: 'cave-golems',
@@ -183,6 +184,7 @@ export const works = [
     projectLabel: 'Voxie Tactics',
     kind: 'creature',
     featured: true,
+    size: 'square',
   },
   {
     id: 'tomes',
