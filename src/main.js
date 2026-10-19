@@ -142,12 +142,6 @@ if (WORK === '/public/work') {
 }
 
 if (page === 'home') {
-  const rail = document.querySelector('.model-rail')
-  if (rail) {
-    const { mountModelRail } = await import('./model-rail.js')
-    mountModelRail(rail)
-  }
-
   const featuredOrder = [
     'hyperflora-grass',
     'hyperflora-minerals',
