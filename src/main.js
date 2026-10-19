@@ -133,12 +133,21 @@ if (WORK === '/public/work') {
       if (value?.includes('/work/')) el.setAttribute(attr, toPublic(value))
     }
   })
-  document.querySelectorAll('link[rel="icon"]').forEach((el) => {
-    if (el.getAttribute('href') === '/favicon.svg') el.setAttribute('href', '/public/favicon.svg')
+  document.querySelectorAll('link[rel="icon"], img.brand-mark').forEach((el) => {
+    const attr = el.tagName === 'IMG' ? 'src' : 'href'
+    const value = el.getAttribute(attr)
+    if (value === '/favicon.png') el.setAttribute(attr, '/public/favicon.png')
+    if (value === '/avatar.png') el.setAttribute(attr, '/public/avatar.png')
   })
 }
 
 if (page === 'home') {
+  const rail = document.querySelector('.model-rail')
+  if (rail) {
+    const { mountModelRail } = await import('./model-rail.js')
+    mountModelRail(rail)
+  }
+
   const featuredOrder = [
     'hyperflora-grass',
     'hyperflora-minerals',

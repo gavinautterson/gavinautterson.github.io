@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gavin Autterson | Art Director</title>
-  <meta name="description" content="Art Director at Always Geeky Games. Game-ready characters and environments, from style guide to in-engine polish.">
+  <meta name="description" content="Art Director and Lead 3D Artist at Always Geeky Games. Environments, characters, and pipelines, from style guide to in-engine polish.">
   <meta property="og:title" content="Gavin Autterson | Art Director">
-  <meta property="og:description" content="Game worlds. Built to ship.">
+  <meta property="og:description" content="Game art. Built to ship.">
   <meta property="og:image" content="/work/website-hero.jpg">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <script>
     (function () {
       var probe = new Image()
@@ -25,8 +25,11 @@
           })
         }
         rewrite()
-        document.querySelectorAll('link[rel="icon"]').forEach(function (el) {
-          if (el.getAttribute('href') === '/favicon.svg') el.setAttribute('href', '/public/favicon.svg')
+        document.querySelectorAll('link[rel="icon"], img.brand-mark').forEach(function (el) {
+          var attr = el.tagName === 'IMG' ? 'src' : 'href'
+          var value = el.getAttribute(attr)
+          if (value === '/favicon.png') el.setAttribute(attr, '/public/favicon.png')
+          if (value === '/avatar.png') el.setAttribute(attr, '/public/avatar.png')
         })
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rewrite)
       }
@@ -44,7 +47,7 @@
 
   <header class="nav">
     <a class="brand" href="/">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <img class="brand-mark" src="/avatar.png" alt="" width="36" height="36">
       Gavin Autterson
     </a>
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
@@ -68,8 +71,8 @@
     </div>
     <div class="hero-veil"></div>
     <div class="hero-copy">
-      <h1>Game worlds.<br><em>Built to ship.</em></h1>
-      <p class="lede">I lead creative teams from the first style guide to in-engine polish. Currently building game ready characters and environments as the Art Director across all games at Always Geeky Games.</p>
+      <h1>Game art.<br><em>Built to ship.</em></h1>
+      <p class="lede">Heya! I'm Gav, an Art Director and Lead 3D Artist. I lead creative teams from the first style guide through to in-engine polish. Currently building environments, characters and pipelines as the creative lead across all games at Always Geeky Games.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#work">Selected work</a>
         <a class="btn btn-ghost" href="/about.html">Experience</a>
@@ -77,12 +80,10 @@
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Art Direction</span><span><b>Voxel Worlds</b></span><span>Unity 3D</span><span>Style Guides</span><span>Character Art</span><span>Environment Design</span><span>Shaders &amp; VFX</span><span>MagicaVoxel</span><span>Team Leadership</span>
-      <span>Art Direction</span><span><b>Voxel Worlds</b></span><span>Unity 3D</span><span>Style Guides</span><span>Character Art</span><span>Environment Design</span><span>Shaders &amp; VFX</span><span>MagicaVoxel</span><span>Team Leadership</span>
-    </div>
-  </div>
+  <section class="model-rail" aria-label="Voxel characters. Drag a model to turn it.">
+    <canvas class="model-rail-canvas"></canvas>
+    <p class="model-rail-hint">Loading models</p>
+  </section>
 
   <section class="section" id="work">
     <div class="section-head">

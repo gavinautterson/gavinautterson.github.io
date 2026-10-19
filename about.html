@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About | Gavin Autterson</title>
   <meta name="description" content="Art Director at Always Geeky Games. Computer Science BSc, voxel specialist, Unity technical art. United Kingdom / Remote.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <script>
     (function () {
       var probe = new Image()
@@ -22,8 +22,11 @@
           })
         }
         rewrite()
-        document.querySelectorAll('link[rel="icon"]').forEach(function (el) {
-          if (el.getAttribute('href') === '/favicon.svg') el.setAttribute('href', '/public/favicon.svg')
+        document.querySelectorAll('link[rel="icon"], img.brand-mark').forEach(function (el) {
+          var attr = el.tagName === 'IMG' ? 'src' : 'href'
+          var value = el.getAttribute(attr)
+          if (value === '/favicon.png') el.setAttribute(attr, '/public/favicon.png')
+          if (value === '/avatar.png') el.setAttribute(attr, '/public/avatar.png')
         })
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rewrite)
       }
@@ -40,7 +43,7 @@
   <a class="skip" href="#experience">Skip to experience</a>
   <header class="nav is-scrolled">
     <a class="brand" href="/">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <img class="brand-mark" src="/avatar.png" alt="" width="36" height="36">
       Gavin Autterson
     </a>
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
