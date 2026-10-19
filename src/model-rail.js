@@ -2,11 +2,19 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
 const MODELS = [
+  'Cobra',
   'baby_golem_red',
+  'Owl',
   'stone_golem_blue',
+  'Mosquito',
   'fire_imp',
+  'Potatoe',
+  'Thananaut',
+  'Snail',
   'stone_golem_green',
+  'Grub',
   'baby_golem_blue',
+  'Tome',
   'stone_golem_boss',
   'baby_golem_green',
   'stone_golem_red',
