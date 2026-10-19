@@ -142,8 +142,10 @@ if (page === 'home') {
   const featuredOrder = [
     'hyperflora-grass',
     'hyperflora-minerals',
-    'hyperflora-room-starter',
     'hyperflora-grub',
+    'survivor-poi-minecart',
+    'survivor-poi-oasis',
+    'survivor-bone-dragon',
     'forest-biome',
     'grass-biome',
     'cave-biome',
@@ -154,9 +156,6 @@ if (page === 'home') {
     'grass-golems',
     'cave-golems',
     'toxic-weapons',
-    'survivor-poi-minecart',
-    'survivor-poi-oasis',
-    'survivor-bone-dragon',
   ]
   const featured = featuredOrder.map((id) => works.find((w) => w.id === id)).filter(Boolean)
   const bento = document.querySelector('#featured')
