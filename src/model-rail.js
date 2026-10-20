@@ -374,7 +374,9 @@ export async function mountModelRail(root) {
     const origin = span / 2
     pivots.forEach((pivot, index) => {
       const slot = index % templates.length
+      const template = templates[slot]
       pivot.position.x = xs[slot] - origin + pivot.userData.copy * span
+      pivot.position.y = (MODEL_HEIGHT - template.userData.height) / 2
     })
   }
 
