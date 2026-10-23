@@ -19,6 +19,9 @@ const assets = [
   ['Hyperflora/Minerals/Hyperflora Minerals.png', 'hyperflora-minerals'],
   ['Hyperflora/Minerals/Economy Minerals Ores In Game Scene View.png', 'hyperflora-ores-ingame'],
   ['Hyperflora/Key Art and Steam Page/Hyperflora Key Art All Steam Cuts.png', 'hyperflora-key-art'],
+  ['Featured Project/Game shots (2).png', 'hyperflora-shot-garden'],
+  ['Featured Project/Game shots (1).png', 'hyperflora-shot-crystals'],
+  ['Featured Project/Main banner.png', 'hyperflora-shot-banner'],
   ['Hyperflora/Interior Areas/Whole Hub.jpg', 'hyperflora-hub'],
   ['Hyperflora/Interior Areas/Greenhouse Area Interior.png', 'hyperflora-greenhouse'],
   ['Hyperflora/Interior Areas/Kitchen Area Interior.png', 'hyperflora-kitchen'],
@@ -108,6 +111,39 @@ for (const [rel, slug] of assets) {
   }
   const { width, height } = await img.metadata()
   console.log(`ok  ${slug}  (${width}x${height})`)
+}
+
+const logoPath = path.join(srcRoot, 'Featured Project', 'HyperFlora_gradient_1.svg')
+try {
+  const svg = await fs.readFile(logoPath, 'utf8')
+  const [vbX, vbY, vbW, vbH] = svg.match(/viewBox="([^"]+)"/)[1].split(/[\s,]+/).map(Number)
+  const rendered = sharp(Buffer.from(svg)).ensureAlpha()
+  const { data, info } = await rendered.raw().toBuffer({ resolveWithObject: true })
+  let minX = info.width
+  let minY = info.height
+  let maxX = 0
+  let maxY = 0
+  for (let y = 0; y < info.height; y += 1) {
+    for (let x = 0; x < info.width; x += 1) {
+      const alpha = data[(y * info.width + x) * info.channels + 3]
+      if (alpha < 12) continue
+      if (x < minX) minX = x
+      if (y < minY) minY = y
+      if (x > maxX) maxX = x
+      if (y > maxY) maxY = y
+    }
+  }
+  const padX = (maxX - minX) * 0.02
+  const padY = (maxY - minY) * 0.04
+  const x = vbX + ((minX - padX) / info.width) * vbW
+  const y = vbY + ((minY - padY) / info.height) * vbH
+  const w = ((maxX - minX + padX * 2) / info.width) * vbW
+  const h = ((maxY - minY + padY * 2) / info.height) * vbH
+  const tightened = svg.replace(/viewBox="[^"]+"/, `viewBox="${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}"`)
+  await fs.writeFile(path.join(outDir, 'hyperflora-logo.svg'), tightened)
+  console.log(`ok  hyperflora-logo.svg  (${Math.round(w)}x${Math.round(h)})`)
+} catch (error) {
+  console.warn(`skip hyperflora-logo.svg  (${error.message})`)
 }
 
 console.log(`\nWrote ${assets.length} pieces to public/work`)
