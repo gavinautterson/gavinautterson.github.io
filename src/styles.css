@@ -1170,4 +1170,30 @@ body.lb-lock { overflow: hidden; }
   .bento,
   .gallery { grid-template-columns: 1fr; }
   .hero h1 { font-size: clamp(2.3rem, 11vw, 3.4rem); }
+
+  /* Mobile hero: image stacked on top, text on solid dark background */
+  .hero {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--bg);
+  }
+  .hero-media {
+    position: relative;
+    height: 56vw;
+    min-height: 220px;
+    max-height: 320px;
+    flex-shrink: 0;
+  }
+  .hero-media picture {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-veil { display: none; }
+  .hero-copy {
+    position: relative;
+    padding-top: var(--gap-m);
+    padding-bottom: var(--gap-m);
+  }
 }
