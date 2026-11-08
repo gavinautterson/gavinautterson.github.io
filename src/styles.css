@@ -806,6 +806,37 @@ button { font-family: inherit; }
 .project-split.is-flip { grid-template-columns: 1.1fr 0.9fr; }
 .project-split.is-flip .project-copy { order: 2; }
 
+/* Hyperflora: full-width cinematic banner */
+.project-banner {
+  grid-template-columns: 1fr;
+  gap: var(--gap-s);
+  align-items: start;
+}
+.project-banner .project-frame { order: -1; }
+.project-banner .project-frame img,
+.project-banner .project-frame picture img {
+  aspect-ratio: 21 / 8;
+}
+
+/* Voxie Survivor: bigger image, narrower text column */
+.project-wide {
+  grid-template-columns: 0.6fr 1.4fr;
+}
+.project-wide.is-flip {
+  grid-template-columns: 1.4fr 0.6fr;
+}
+.project-wide .project-frame img,
+.project-wide .project-frame picture img {
+  aspect-ratio: 4 / 3;
+}
+
+/* Voxie Tactics: landscape crop */
+.project-landscape .project-frame img,
+.project-landscape .project-frame picture img {
+  aspect-ratio: 4 / 3;
+  object-position: center 15%;
+}
+
 .project-copy .eyebrow {
   color: var(--moss);
   font-size: 0.78rem;
