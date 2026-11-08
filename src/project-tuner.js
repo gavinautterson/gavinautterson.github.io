@@ -1,5 +1,5 @@
 const LS_KEY = 'project-tuner'
-const DEFAULTS = { imgFr: 1.1, ratio: 1.8 }
+const DEFAULTS = { imgFr: 1.1, ratio: 1.8, titleStroke: 7, emStroke: 5 }
 
 function load() {
   try { return { ...DEFAULTS, ...JSON.parse(localStorage.getItem(LS_KEY) || '{}') } } catch { return { ...DEFAULTS } }
@@ -13,6 +13,8 @@ function apply(state) {
   const root = document.documentElement
   root.style.setProperty('--project-img-fr', state.imgFr + 'fr')
   root.style.setProperty('--project-img-ratio', String(state.ratio))
+  root.style.setProperty('--hero-title-stroke', String(state.titleStroke))
+  root.style.setProperty('--hero-em-stroke', String(state.emStroke))
 }
 
 export function mountProjectTuner() {
@@ -35,6 +37,16 @@ export function mountProjectTuner() {
         <span>Aspect ratio</span>
         <input type="range" min="0.5" max="2.5" step="0.01" value="${state.ratio}" data-key="ratio">
         <input type="number" min="0.5" max="2.5" step="0.01" value="${state.ratio}" data-key="ratio">
+      </label>
+      <label class="scale-tool-row scale-tool-gap">
+        <span>Title stroke</span>
+        <input type="range" min="0" max="8" step="0.5" value="${state.titleStroke}" data-key="titleStroke">
+        <input type="number" min="0" max="8" step="0.5" value="${state.titleStroke}" data-key="titleStroke">
+      </label>
+      <label class="scale-tool-row">
+        <span>Em stroke</span>
+        <input type="range" min="0" max="8" step="0.5" value="${state.emStroke}" data-key="emStroke">
+        <input type="number" min="0" max="8" step="0.5" value="${state.emStroke}" data-key="emStroke">
       </label>
       <div class="scale-tool-actions">
         <button type="button" data-action="copy">Copy CSS</button>
@@ -65,7 +77,7 @@ export function mountProjectTuner() {
   panel.addEventListener('click', (e) => {
     const action = e.target.dataset.action
     if (action === 'copy') {
-      const css = `--project-img-fr: ${state.imgFr}fr;\n--project-img-ratio: ${state.ratio};`
+      const css = `--project-img-fr: ${state.imgFr}fr;\n--project-img-ratio: ${state.ratio};\n--hero-title-stroke: ${state.titleStroke};\n--hero-em-stroke: ${state.emStroke};`
       navigator.clipboard?.writeText(css).catch(() => {})
       e.target.textContent = 'Copied!'
       setTimeout(() => { e.target.textContent = 'Copy CSS' }, 1500)

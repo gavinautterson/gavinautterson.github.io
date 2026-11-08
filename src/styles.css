@@ -19,6 +19,8 @@
   --radius: 0.3rem;
   --project-img-fr: 1.1fr;
   --project-img-ratio: 1.8;
+  --hero-title-stroke: 7;
+  --hero-em-stroke: 5;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --gap-s: clamp(1rem, 2vw, 1.75rem);
   --gap-m: clamp(2rem, 4vw, 3.25rem);
@@ -244,6 +246,8 @@ button { font-family: inherit; }
   line-height: 0.95;
   letter-spacing: -0.055em;
   font-weight: 700;
+  -webkit-text-stroke: calc(var(--hero-title-stroke) * 1px) #000;
+  paint-order: stroke fill;
 }
 
 .hero h1 em {
@@ -253,6 +257,8 @@ button { font-family: inherit; }
   font-size: 0.38em;
   margin-top: 0.3em;
   color: var(--moss);
+  -webkit-text-stroke: calc(var(--hero-em-stroke) * 1px) #000;
+  paint-order: stroke fill;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
