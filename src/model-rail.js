@@ -138,8 +138,7 @@ function fitModels(templates, scales) {
 }
 
 function mountTuneTool(templates, scales, spacing, onScale, onSpacing, onReset) {
-  const local = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-  if (!local) return
+  return // disabled — use project-tuner for card sizing
   document.querySelector('.scale-tool')?.remove()
 
   const tool = document.createElement('aside')

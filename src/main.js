@@ -142,6 +142,9 @@ if (WORK === '/public/work') {
 }
 
 if (page === 'home') {
+  const { mountProjectTuner } = await import('./project-tuner.js')
+  mountProjectTuner()
+
   const rail = document.querySelector('.model-rail')
   if (rail) {
     const { mountModelRail } = await import('./model-rail.js')

@@ -17,6 +17,8 @@
   --max: 1180px;
   --wide: 1440px;
   --radius: 0.3rem;
+  --project-img-fr: 1.1fr;
+  --project-img-ratio: 1.8;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --gap-s: clamp(1rem, 2vw, 1.75rem);
   --gap-m: clamp(2rem, 4vw, 3.25rem);
@@ -818,16 +820,25 @@ button { font-family: inherit; }
   aspect-ratio: 21 / 8;
 }
 
-/* Voxie Survivor: bigger image, narrower text column */
+/* Project cards: image size controlled via CSS vars (tunable in dev) */
 .project-wide {
-  grid-template-columns: 0.6fr 1.4fr;
+  grid-template-columns: 1fr var(--project-img-fr);
+  align-items: start;
 }
+.project-wide .project-copy  { grid-column: 1; grid-row: 1; }
+.project-wide .project-frame { grid-column: 2; grid-row: 1 / 3; }
+.project-wide > .btn         { grid-column: 1; grid-row: 2; align-self: start; padding-top: var(--gap-s); }
+
 .project-wide.is-flip {
-  grid-template-columns: 1.4fr 0.6fr;
+  grid-template-columns: var(--project-img-fr) 1fr;
 }
+.project-wide.is-flip .project-copy  { grid-column: 2; }
+.project-wide.is-flip .project-frame { grid-column: 1; }
+.project-wide.is-flip > .btn         { grid-column: 2; }
+
 .project-wide .project-frame img,
 .project-wide .project-frame picture img {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--project-img-ratio);
 }
 
 /* Voxie Tactics: landscape crop */
@@ -1179,6 +1190,12 @@ body.lb-lock { overflow: hidden; }
   .shot-grid { aspect-ratio: auto; grid-template-rows: auto; }
   .shot-grid .shot { aspect-ratio: 4 / 3; }
   .project-split.is-flip .project-copy { order: 0; }
+  .project-wide .project-copy,
+  .project-wide.is-flip .project-copy,
+  .project-wide .project-frame,
+  .project-wide.is-flip .project-frame,
+  .project-wide > .btn,
+  .project-wide.is-flip > .btn { grid-column: auto; grid-row: auto; padding-top: 0; }
 }
 
 @media (max-width: 1080px) {
